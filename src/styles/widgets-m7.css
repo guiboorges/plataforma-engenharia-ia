@@ -1,0 +1,323 @@
+/* widgets-m7.css — widgets do M7 (ver design/DESIGN.md). Prefixo m7-.
+   m7-of: sobreajuste · m7-th: limiar, matriz de confusão e ROC · m7-mr: MAE contra RMSE.
+   Só tokens; os gráficos são SVG com viewBox fixo, que encolhem com o painel. */
+
+/* ---------- partilhado */
+.m7-of,
+.m7-th,
+.m7-mr {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+.m7-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.m7-two {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+}
+.m7-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.m7-range {
+  width: 100%;
+  margin: 0;
+  accent-color: var(--text);
+  cursor: pointer;
+}
+.m7-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.m7-strong {
+  color: var(--text);
+  font-weight: 500;
+}
+.m7-big {
+  font-size: var(--fs-2xl);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.m7-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px;
+}
+.m7-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.m7-field .input {
+  width: 100%;
+}
+.m7-input-unit {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.m7-input-unit .input {
+  width: 7rem;
+}
+
+/* ---------- gráficos */
+.m7-fig {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  margin: 0;
+}
+.m7-plot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  font-family: var(--font);
+}
+.m7-plot-frame {
+  fill: none;
+  stroke: var(--border-2);
+  stroke-width: 1;
+}
+.m7-plot-grid {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+.m7-plot-tick,
+.m7-plot-label {
+  fill: var(--text-3);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+.m7-plot-note {
+  fill: var(--text-2);
+  font-size: 11px;
+}
+.m7-line {
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+}
+.m7-line.is-main {
+  stroke: var(--chart-1);
+}
+.m7-line.is-s2 {
+  stroke: var(--chart-2);
+}
+.m7-line.is-ref {
+  stroke: var(--text-3);
+  stroke-width: 1.2;
+  stroke-dasharray: 5 4;
+}
+.m7-dot {
+  fill: var(--chart-2);
+  stroke: var(--surface-2);
+  stroke-width: 1;
+}
+.m7-mark.is-main {
+  fill: var(--chart-1);
+}
+.m7-mark.is-s2 {
+  fill: var(--chart-2);
+}
+.m7-mark.is-on {
+  stroke: var(--surface-2);
+  stroke-width: 1.5;
+}
+.m7-point {
+  fill: var(--bad);
+  stroke: var(--surface-2);
+  stroke-width: 1.5;
+}
+.m7-diag,
+.m7-hline {
+  stroke: var(--text-3);
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+}
+.m7-vline {
+  stroke: var(--text-2);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+/* legendas */
+.m7-key {
+  display: inline-block;
+  vertical-align: middle;
+}
+.m7-key-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--chart-2);
+}
+.m7-key-main,
+.m7-key-s2 {
+  width: 16px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--chart-1);
+}
+.m7-key-s2 {
+  background: var(--chart-2);
+}
+.m7-key-ref,
+.m7-key-hline {
+  width: 16px;
+  height: 0;
+  border-top: 1.5px dashed var(--text-3);
+}
+
+/* ---------- matriz de confusão e métricas */
+.m7-cm th,
+.m7-cm td {
+  padding: 8px 10px;
+  vertical-align: middle;
+}
+.m7-cm tbody th {
+  white-space: nowrap;
+}
+.m7-cell {
+  text-align: center;
+}
+.m7-cell-n {
+  display: block;
+  font-size: var(--fs-xl);
+  font-weight: 500;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.m7-cell.is-ok .m7-cell-n {
+  color: var(--ok);
+}
+.m7-cell.is-bad .m7-cell-n {
+  color: var(--bad);
+}
+.m7-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+}
+.m7-stats > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+}
+.m7-stats dt {
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.m7-stats dd {
+  margin: 0;
+  font-size: var(--fs-lg);
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- MAE contra RMSE */
+.m7-errs {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+.m7-compare {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.m7-compare > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+}
+.m7-shares {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.m7-share-row {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr);
+  align-items: center;
+  gap: 8px;
+}
+.m7-share-name {
+  font-family: var(--mono);
+}
+.m7-share {
+  display: flex;
+  height: 14px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--surface-3);
+}
+.m7-share-seg {
+  min-width: 0;
+  background: var(--chart-2);
+  opacity: 0.6;
+  box-shadow: inset -1px 0 0 var(--surface);
+}
+.m7-share-seg.is-big {
+  background: var(--chart-1);
+  opacity: 1;
+}
+
+@container widget (min-width: 620px) {
+  .m7-of .m7-two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .m7-th .m7-two {
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+    align-items: start;
+  }
+}
+
+@container widget (max-width: 440px) {
+  .m7-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .m7-errs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .m7-compare {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .m7-share-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 4px;
+  }
+  .m7-cm th,
+  .m7-cm td {
+    padding: 6px 6px;
+  }
+  .m7-cm tbody th {
+    white-space: normal;
+  }
+}

@@ -1,0 +1,341 @@
+/* widgets-m3.css — widgets do M3 (ver design/DESIGN.md). Prefixo m3-.
+   m3-bc: broadcasting · m3-gb: groupby · m3-td: dados arrumados. Só tokens; as grelhas respondem à largura do painel. */
+
+/* ---------- partilhado */
+.m3-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.m3-pre {
+  margin: 0;
+  padding: 10px 12px;
+  overflow-x: auto;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  color: var(--text-body);
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  line-height: 1.6;
+  white-space: pre;
+}
+.widget-detail .m3-pre {
+  background: var(--surface);
+}
+.m3-pre-bad {
+  border-color: var(--bad);
+  color: var(--bad);
+  white-space: pre-wrap;
+}
+.m3-tbl {
+  font-size: var(--fs-xs);
+}
+.m3-tbl th,
+.m3-tbl td {
+  padding: 5px 10px;
+  white-space: nowrap;
+}
+.m3-num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- broadcasting */
+.m3-bc {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+.m3-bc-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 8px;
+}
+.m3-bc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1 1 120px;
+  min-width: 0;
+}
+.m3-bc-field .input {
+  width: 100%;
+}
+.m3-bc-op {
+  padding-bottom: 6px;
+  color: var(--text-3);
+}
+.m3-bc-grid {
+  display: grid;
+  gap: 4px;
+  justify-content: start;
+  max-width: 100%;
+  overflow-x: auto;
+}
+.m3-bc-gridrow {
+  display: contents;
+}
+.m3-bc-rowlabel {
+  align-self: center;
+  padding-right: 8px;
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.m3-bc-cell {
+  display: grid;
+  place-items: center;
+  min-height: 32px;
+  padding: 0 8px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: var(--fs-sm);
+  font-variant-numeric: tabular-nums;
+}
+.m3-bc-cell.is-missing {
+  border-style: dashed;
+  background: transparent;
+  color: var(--text-4);
+}
+.m3-bc-cell.is-active {
+  border-color: var(--text);
+}
+.m3-bc-cell.is-out {
+  border-color: var(--ok);
+  background: var(--ok-bg);
+  color: var(--ok);
+}
+.m3-bc-cell.is-bad {
+  border-color: var(--bad);
+  background: var(--bad-bg);
+  color: var(--bad);
+}
+ol.m3-bc-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: var(--fs-sm);
+}
+ol.m3-bc-steps:empty {
+  display: none;
+}
+.m3-bc-steps li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  min-width: 0;
+}
+.m3-bc-steps li.is-bad {
+  color: var(--bad);
+}
+.m3-bc-k {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-xs);
+  background: var(--surface-2);
+  color: var(--text-2);
+  font-size: 11px;
+  line-height: 1;
+}
+.m3-st-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 12px 24px;
+}
+.m3-st {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.m3-st-grid {
+  display: grid;
+  gap: 3px;
+}
+.m3-st-c {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border-radius: 3px;
+  vertical-align: -2px;
+}
+.m3-st-c.is-real {
+  background: var(--chart-1);
+}
+.m3-st-c.is-copy {
+  border: 1px dashed var(--text-3);
+}
+.m3-st-legend {
+  flex-basis: 100%;
+}
+
+/* ---------- groupby */
+.m3-gb {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.m3-gb-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+}
+.m3-gb-control {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+/* o controlo segmentado fica do tamanho dos botões, não da largura da coluna */
+.m3-gb-control > .seg,
+.m3-td > .seg {
+  align-self: flex-start;
+}
+.m3-gb-head {
+  display: none;
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--text-2);
+}
+ol.m3-gb-groups {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.m3-gb-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+}
+.m3-gb-row .table-wrap {
+  background: var(--surface);
+}
+.m3-gb-split {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.m3-gb-key {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--text);
+}
+.m3-gb-apply {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.m3-gb-arrow {
+  color: var(--text-3);
+}
+.m3-gb-how {
+  overflow-wrap: anywhere;
+}
+.m3-gb-val {
+  font-size: var(--fs-md);
+  color: var(--text);
+}
+@container widget (min-width: 600px) {
+  .m3-gb-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 12px;
+    padding: 0 11px;
+  }
+  .m3-gb-row {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 12px;
+    align-items: center;
+  }
+}
+
+/* ---------- dados arrumados */
+.m3-td {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.m3-td-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+  align-items: start;
+}
+.m3-td-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.m3-td-arrow {
+  justify-self: center;
+  color: var(--text-3);
+  transform: rotate(90deg);
+}
+@container widget (min-width: 600px) {
+  .m3-td-cols {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 12px;
+  }
+  .m3-td-arrow {
+    align-self: center;
+    transform: none;
+  }
+}
+.m3-td-rowhead {
+  background: transparent;
+  color: var(--text);
+  font-size: var(--fs-xs);
+  font-weight: 400;
+}
+.m3-td-cell {
+  min-width: 3.2rem;
+  padding: 2px 6px;
+  border: 1px solid transparent;
+  border-radius: var(--r-xs);
+  background: none;
+  color: var(--text-body);
+  font-size: var(--fs-xs);
+  text-align: right;
+  cursor: pointer;
+}
+.m3-td-cell:hover {
+  background: var(--surface-3);
+}
+.m3-td-cell.is-sel {
+  border-color: var(--text);
+  background: var(--surface-3);
+  color: var(--text);
+}
+.m3-tbl tr.m3-td-hit td {
+  background: var(--surface-2);
+  color: var(--text);
+}
+.m3-td-gb {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

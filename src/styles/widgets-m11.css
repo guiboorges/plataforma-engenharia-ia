@@ -1,0 +1,460 @@
+/* widgets-m11.css — widgets do M11 (ver design/DESIGN.md). Prefixo m11-.
+   m11-cv: esquemas de validação · m11-th: limiar e capacidade no Caravan · m11-sh: cascata SHAP.
+   Só tokens; os gráficos são SVG esticados à largura do painel, com as etiquetas em HTML. */
+
+/* ---------- partilhado */
+.m11-cv,
+.m11-th,
+.m11-sh {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+.m11-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px 20px;
+}
+.m11-ctl {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.m11-ctl-wide {
+  flex: 1 1 240px;
+}
+.m11-ctl input[type="range"] {
+  width: 100%;
+  min-width: 160px;
+  max-width: 320px;
+  accent-color: var(--text);
+}
+.m11-ctl-wide input[type="range"] {
+  max-width: none;
+}
+.m11-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.m11-inline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.m11-seed {
+  width: 5.5rem;
+}
+.m11-money {
+  width: 5rem;
+}
+.m11-code {
+  align-self: flex-start;
+  max-width: 100%;
+  overflow-x: auto;
+  padding: 4px 8px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  color: var(--text);
+  white-space: nowrap;
+}
+.m11-legend {
+  margin: 0;
+  line-height: 1.6;
+}
+.m11-key {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  vertical-align: baseline;
+}
+.m11-key.is-train {
+  background: var(--chart-2);
+}
+.m11-key.is-test,
+.m11-key.is-up {
+  background: var(--chart-1);
+}
+.m11-key.is-down {
+  background: var(--chart-2);
+}
+.m11-key.is-off {
+  background: var(--hatch);
+  border: 1px solid var(--border-2);
+}
+.m11-key.is-one {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--text);
+}
+.m11-key-line {
+  display: inline-block;
+  width: 16px;
+  height: 0;
+  vertical-align: middle;
+  border-top: 2px solid var(--chart-1);
+}
+.m11-key-line.is-ref {
+  border-top: 2px dashed var(--text-3);
+}
+
+/* ---------- esquemas de validação */
+.m11-strip-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.m11-strip {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.m11-strip-row {
+  display: grid;
+  grid-template-columns: 4.6rem minmax(0, 1fr) 2.6rem;
+  align-items: center;
+  gap: 8px;
+}
+.m11-strip-lab {
+  white-space: nowrap;
+}
+.m11-narrow {
+  display: none;
+}
+.m11-strip-sum {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.m11-cells {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+.m11-cell,
+.m11-lab {
+  display: block;
+  min-width: 0;
+  height: 14px;
+  border-radius: 2px;
+}
+.m11-cell.is-train {
+  background: var(--chart-2);
+}
+.m11-cell.is-test {
+  background: var(--chart-1);
+}
+.m11-cell.is-off {
+  background: var(--hatch);
+  box-shadow: inset 0 0 0 1px var(--border-2);
+}
+.m11-lab {
+  position: relative;
+}
+.m11-lab.is-one::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(8px, 100%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--text);
+  transform: translate(-50%, -50%);
+}
+.m11-group {
+  display: block;
+  height: 14px;
+  border-radius: 2px;
+  background: var(--surface-3);
+  box-shadow: inset 0 0 0 1px var(--border-2);
+}
+.m11-group.is-odd {
+  background: var(--hatch);
+}
+
+/* ---------- limiar e capacidade */
+.m11-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+.m11-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+}
+.m11-stat-v {
+  font-size: var(--fs-xl);
+  font-weight: 500;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.m11-charts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+.m11-cost {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  margin: 0;
+  padding: 12px 0 0;
+  border: 0;
+  border-top: 1px solid var(--border);
+}
+.m11-cost legend {
+  padding: 0 0 8px;
+}
+
+/* gráfico de linhas */
+.m11-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  margin: 0;
+}
+.m11-chart-y {
+  margin: 0;
+}
+.m11-chart-body {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 8px;
+}
+.m11-yticks {
+  position: relative;
+  height: 170px;
+  min-width: 1.8rem;
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+  text-align: right;
+}
+.m11-yticks span {
+  position: absolute;
+  right: 0;
+  transform: translateY(-50%);
+}
+.m11-plot {
+  position: relative;
+  min-width: 0;
+}
+.m11-svg {
+  display: block;
+  width: 100%;
+  height: 170px;
+  overflow: visible;
+}
+.m11-axis {
+  stroke: var(--border-2);
+  stroke-width: 1;
+}
+.m11-grid {
+  stroke: var(--grid-line);
+  stroke-width: 1;
+}
+.m11-line {
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+.m11-line.is-main {
+  stroke: var(--chart-1);
+}
+.m11-line.is-ref {
+  stroke: var(--text-3);
+  stroke-dasharray: 4 3;
+}
+.m11-guide {
+  stroke: var(--text-3);
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+}
+.m11-dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--text);
+  box-shadow: 0 0 0 2px var(--surface);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.m11-xticks {
+  position: relative;
+  height: 18px;
+  margin-top: 4px;
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.m11-xticks span {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+.m11-xticks span.is-start {
+  transform: none;
+}
+.m11-xticks span.is-end {
+  transform: translateX(-100%);
+}
+.m11-xlabel {
+  text-align: center;
+}
+
+/* ---------- cascata SHAP */
+.m11-wf {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.m11-wf-row {
+  display: grid;
+  grid-template-columns: minmax(7rem, 11rem) minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  min-height: 26px;
+}
+.m11-wf-name {
+  overflow: hidden;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--text);
+}
+.m11-wf-end .m11-wf-name {
+  color: var(--text-2);
+}
+.m11-wf-track {
+  position: relative;
+  height: 22px;
+  min-width: 0;
+}
+.m11-wf-end .m11-wf-track {
+  height: 10px;
+}
+.m11-wf-axis {
+  height: 28px;
+  border-top: 1px solid var(--border-2);
+}
+.m11-wf-bar {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  border-radius: 2px;
+}
+.m11-wf-bar.is-up {
+  background: var(--chart-1);
+}
+.m11-wf-bar.is-down {
+  background: var(--chart-2);
+}
+.m11-wf-guide {
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  border-left: 1px dashed var(--border-2);
+}
+.m11-wf-val {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-2);
+  white-space: nowrap;
+}
+.m11-wf-val.is-inside.is-up {
+  color: var(--bg);
+}
+.m11-wf-val.is-inside.is-down {
+  color: var(--text);
+}
+.m11-wf-end .m11-wf-name {
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+/* marcas de f(x) (em cima, a descer até à primeira barra) e de E[f(X)] (no eixo, a subir até à última) */
+.m11-wf-mark {
+  position: absolute;
+  border-left: 2px solid var(--text);
+}
+.m11-wf-end:first-child .m11-wf-mark {
+  top: 0;
+  height: 24px;
+}
+.m11-wf-axis .m11-wf-mark {
+  top: -12px;
+  height: 12px;
+}
+.m11-wf-tick {
+  position: absolute;
+  top: 6px;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+.m11-gloss summary {
+  cursor: pointer;
+  color: var(--text-2);
+}
+.m11-gloss ul {
+  margin: 8px 0 0;
+  padding-left: 18px;
+  line-height: 1.6;
+  color: var(--text-body);
+}
+
+/* ---------- painel estreito */
+@container widget (max-width: 520px) {
+  .m11-charts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .m11-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@container widget (max-width: 440px) {
+  .m11-strip-row {
+    grid-template-columns: 1.2rem minmax(0, 1fr) 2.2rem;
+    gap: 6px;
+  }
+  .m11-wide {
+    display: none;
+  }
+  .m11-narrow {
+    display: inline;
+  }
+  .m11-cells {
+    gap: 1px;
+  }
+  .m11-cell,
+  .m11-lab,
+  .m11-group {
+    height: 12px;
+  }
+  .m11-wf-row {
+    grid-template-columns: minmax(5.5rem, 7.5rem) minmax(0, 1fr);
+    gap: 6px;
+  }
+  .m11-svg,
+  .m11-yticks {
+    height: 150px;
+  }
+}

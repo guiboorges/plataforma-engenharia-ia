@@ -1,0 +1,250 @@
+/* phase.css — fecho de fase: plano, exame, mini-projeto e gabarito (prefixo phase-). Ver design/DESIGN.md.
+   O cartão do exame, o resultado e o gabarito reutilizam as classes de exam.css (exam-, gab-); a grelha
+   do mini-projeto reutiliza as de pages.css (proj-). */
+
+/* ---------- página e separadores fixos (como na página do módulo) */
+.phase-page {
+  --phase-tabs-top: env(safe-area-inset-top, 0px);
+  --phase-tabs-h: 52px;
+}
+@media (max-width: 1023px) {
+  .phase-page {
+    /* a barra de topo do telemóvel tem cerca de 47px */
+    --phase-tabs-top: calc(47px + env(safe-area-inset-top, 0px));
+  }
+}
+.phase-page [id] {
+  scroll-margin-top: calc(var(--phase-tabs-top) + var(--phase-tabs-h) + 12px);
+}
+.phase-tabs {
+  position: sticky;
+  top: var(--phase-tabs-top);
+  z-index: 20;
+  display: flex;
+  min-width: 0;
+  margin-block: -8px;
+  padding-block: 8px;
+  background: var(--bg);
+}
+.phase-tabs > .seg {
+  min-width: 0;
+}
+
+/* metadados do cabeçalho */
+.phase-meta {
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+.phase-meta + .phase-meta::before {
+  content: "·";
+  margin-right: 10px;
+  color: var(--text-4);
+}
+
+/* ---------- texto */
+.phase-lede {
+  max-width: 70ch;
+  font-size: var(--fs-md);
+  line-height: 1.65;
+  color: var(--text-body);
+}
+.phase-lede strong,
+.phase-prose strong,
+.phase-verdict strong,
+.phase-questions strong {
+  font-weight: 500;
+  color: var(--text);
+}
+.phase-note {
+  max-width: 70ch;
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--text-2);
+}
+.phase-prose {
+  font-size: var(--fs-md);
+  line-height: 1.7;
+}
+
+/* ---------- Plano: sessões da semana de fecho */
+.phase-session {
+  display: grid;
+  grid-template-columns: 112px minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 4px 12px;
+  padding: 8px 12px;
+  font-size: var(--fs-sm);
+}
+.phase-session-name {
+  font-weight: 500;
+  color: var(--text);
+}
+.phase-session-what {
+  min-width: 0;
+  line-height: 1.45;
+  color: var(--text-2);
+}
+.phase-session-time {
+  font-size: var(--fs-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-3);
+  white-space: nowrap;
+  text-align: right;
+}
+@media (max-width: 560px) {
+  .phase-session {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .phase-session-what {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+}
+
+/* regra de passagem: estado geral */
+.phase-verdict {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--text-2);
+}
+.phase-verdict > .icon {
+  flex: none;
+  margin-top: 3px;
+  color: var(--text-3);
+}
+.phase-verdict.is-done {
+  border-color: transparent;
+  background: var(--ok-bg);
+}
+.phase-verdict.is-done > .icon,
+.phase-verdict.is-done strong {
+  color: var(--ok);
+}
+
+/* ---------- Mini-projeto */
+.phase-questions {
+  margin: 0;
+  padding-left: 1.4em;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.phase-questions li::marker {
+  font-family: var(--mono);
+  font-size: var(--fs-sm);
+  color: var(--text-3);
+}
+.phase-notebook {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  padding-top: 4px;
+}
+.phase-notebook-note {
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.phase-total {
+  font-size: var(--fs-md);
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  white-space: nowrap;
+}
+.phase-total-max {
+  color: var(--text-3);
+}
+.phase-key-hint {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  padding-top: 4px;
+  border-top: 1px solid var(--border);
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+.phase-key-hint > span {
+  flex: 1 1 240px;
+  min-width: 0;
+  padding-top: 8px;
+}
+.phase-key-hint > .icon {
+  flex: none;
+  margin-top: 8px;
+  color: var(--text-3);
+}
+.phase-key-hint > .btn {
+  margin-top: 8px;
+}
+
+/* critério da grelha com a descrição oficial ("O que se avalia") */
+.phase-crit {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding-block: 2px;
+}
+.phase-crit-detail {
+  font-size: var(--fs-xs);
+  line-height: 1.5;
+  color: var(--text-3);
+}
+
+/* referências */
+.phase-refs {
+  margin: 0;
+  padding-left: 1.2em;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--text-body);
+}
+.phase-refs li::marker {
+  color: var(--text-3);
+}
+.phase-ref-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: var(--fs-xs);
+  color: var(--text-2);
+}
+.phase-ref-link .icon {
+  color: var(--text-3);
+}
+
+/* ---------- documentos da pasta da fase (fases sem fecho interativo) */
+.phase-doc > .phase-doc-summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 28px;
+  cursor: pointer;
+  list-style: none;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--text-2);
+}
+.phase-doc > .phase-doc-summary::-webkit-details-marker {
+  display: none;
+}
+.phase-doc > .phase-doc-summary:hover {
+  color: var(--text);
+}
+.phase-doc > .phase-doc-summary .icon {
+  color: var(--text-3);
+  transition: transform 0.15s ease;
+}
+.phase-doc[open] > .phase-doc-summary .icon {
+  transform: rotate(90deg);
+}

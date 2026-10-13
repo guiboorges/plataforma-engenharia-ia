@@ -1,0 +1,337 @@
+/* dashboard.css — painel "Hoje" (ver design/DESIGN.md). Prefixo dash-.
+   As grelhas respondem à largura do conteúdo (container queries), não à da janela,
+   porque a barra lateral ocupa 252px a partir de 1024px. */
+
+.dash {
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.dash-sep {
+  color: var(--text-4);
+}
+
+/* ---------- números */
+.dash-stats {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: minmax(0, 1fr);
+}
+@container (min-width: 520px) {
+  .dash-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@container (min-width: 1000px) {
+  .dash-stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.dash-note-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-2);
+}
+
+/* ---------- gráfico + próxima sessão */
+.dash-main {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: minmax(0, 1fr);
+}
+@container (min-width: 880px) {
+  .dash-main {
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  }
+}
+
+/* título de cartão com uma linha de metadados por baixo */
+.dash-head-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.dash-head-sub {
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.dash-title-dot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* listas embutidas (linhas .row-item) */
+.dash-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.dash-date {
+  flex: none;
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+  white-space: nowrap;
+}
+
+/* ---------- horas de estudo */
+.dash-legend {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.dash-key {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.dash-swatch {
+  width: 14px;
+  height: 0;
+  border-top: 2px solid var(--chart-1);
+}
+.dash-swatch.is-plan {
+  border-top: 2px dashed var(--chart-2);
+}
+.dash-chart {
+  height: 220px;
+  min-width: 0;
+  overflow: hidden;
+}
+.dash-chart svg {
+  display: block;
+}
+.dash-chart-grid {
+  stroke: var(--border);
+  stroke-width: 1;
+  shape-rendering: crispEdges;
+}
+.dash-chart-axis {
+  fill: var(--text-3);
+  font-family: var(--font);
+  font-size: var(--fs-xs);
+  font-variant-numeric: tabular-nums;
+}
+.dash-chart-hatch line {
+  stroke: var(--hatch);
+  stroke-width: 1;
+}
+.dash-chart-hit {
+  fill: transparent;
+}
+.dash-chart-hit:hover {
+  fill: var(--grid-line);
+}
+.dash-chart-area,
+.dash-chart-plan,
+.dash-chart-actual,
+.dash-chart-dot {
+  pointer-events: none;
+}
+.dash-chart-plan {
+  fill: none;
+  stroke: var(--chart-2);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+}
+.dash-chart-actual {
+  fill: none;
+  stroke: var(--chart-1);
+  stroke-width: 2;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+.dash-chart-dot {
+  fill: var(--surface);
+  stroke: var(--chart-1);
+  stroke-width: 2;
+}
+.dash-hours-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+.dash-hours-sum {
+  min-width: 0;
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.dash-log {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.dash-log[hidden] {
+  display: none;
+}
+.dash-log-form {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.dash-log-label {
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+.dash-log-min {
+  width: 96px;
+}
+.dash-log-row {
+  padding: 3px 4px 3px 10px;
+}
+.dash-log-mins {
+  flex: none;
+  min-width: 56px;
+}
+.dash-log-mod {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--text-3);
+}
+
+/* ---------- próxima sessão */
+.dash-cols {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 0 10px;
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.dash-task {
+  gap: 12px;
+}
+/* o visto herda a cor da caixa: sem isto, ".row-item .icon" pinta-o de cinzento e aparece nas caixas por marcar */
+.dash-task .check-box .icon {
+  color: inherit;
+}
+.dash-task-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.dash-task-link {
+  flex: none;
+}
+.dash-next-text {
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--text-2);
+}
+.dash-next-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 4px;
+  min-width: 0;
+}
+.dash-btn-fit {
+  max-width: 100%;
+}
+
+/* ---------- módulos da fase (pastas) */
+.dash-folders {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+}
+.dash-mod-id {
+  display: inline-flex;
+  align-items: center;
+  height: 20px;
+  margin-right: 8px;
+  padding: 0 6px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-xs);
+  background: var(--surface-2);
+  color: var(--text-2);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+}
+.dash-pct {
+  font-size: var(--fs-xs);
+  color: var(--text-2);
+}
+.dash-folder-note {
+  color: var(--text-3);
+  text-align: right;
+}
+
+/* ---------- próximos marcos */
+.dash-ms {
+  align-items: flex-start;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+.dash-ms-icon {
+  margin-top: 1px;
+}
+.dash-ms-main {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.dash-ms-label {
+  color: var(--text);
+}
+.dash-ms-sub {
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.dash-ms .dash-date {
+  padding-top: 1px;
+}
+
+/* ---------- fases */
+.dash-phase-row {
+  gap: 10px;
+  color: var(--text-2);
+}
+.dash-phase-row.is-current {
+  color: var(--text);
+}
+.dash-phase-name {
+  flex: 1 1 0;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dash-phase-row.is-current .dash-phase-name {
+  font-weight: 500;
+}
+.dash-phase-num {
+  margin-right: 6px;
+  color: var(--text-3);
+}
+.dash-phase-bar {
+  flex: 0 0 56px;
+}
+@container (min-width: 520px) {
+  .dash-phase-bar {
+    flex-basis: 112px;
+  }
+}
+.dash-phase-date {
+  min-width: 60px;
+  text-align: right;
+}

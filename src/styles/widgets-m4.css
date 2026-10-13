@@ -1,0 +1,410 @@
+/* widgets-m4.css — widgets do M4 (ver design/DESIGN.md). Prefixo m4-.
+   m4-tr: transformações 2 × 2 e vetores próprios · m4-cos: produto escalar e cosseno · m4-search: pesquisa em miniatura ·
+   m4-svd: compressão com a SVD. Só tokens; os vetores usam --chart-1 e --chart-2, as grelhas os contornos. */
+
+/* ---------- partilhado */
+.m4-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.m4-pre {
+  margin: 0;
+  padding: 10px 12px;
+  overflow-x: auto;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  color: var(--text-body);
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  line-height: 1.6;
+  white-space: pre;
+}
+.m4-range {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.m4-range input[type="range"] {
+  width: 100%;
+  max-width: 320px;
+  accent-color: var(--text);
+}
+.m4-plane {
+  display: block;
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  touch-action: none;
+  user-select: none;
+}
+.m4-plane text {
+  font-family: var(--mono);
+  font-size: 11px;
+}
+.m4-grid0 {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+.m4-grid1 {
+  stroke: var(--border-2);
+  stroke-width: 1;
+}
+.m4-axis {
+  stroke: var(--text-4);
+  stroke-width: 1;
+}
+.m4-square {
+  fill: var(--hatch);
+  stroke: var(--text-3);
+  stroke-width: 1;
+}
+.m4-v1 line,
+.m4-v2 line,
+line.m4-u,
+line.m4-v {
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+.m4-v1 line,
+line.m4-u {
+  stroke: var(--chart-1);
+}
+.m4-v2 line,
+line.m4-v {
+  stroke: var(--chart-2);
+}
+.m4-v1 text,
+circle.m4-v1,
+.m4-v1-head,
+circle.m4-u,
+.m4-u-head {
+  fill: var(--chart-1);
+}
+.m4-v2 text,
+circle.m4-v2,
+.m4-v2-head,
+circle.m4-v,
+.m4-v-head {
+  fill: var(--chart-2);
+}
+.m4-eig line {
+  stroke: var(--text-2);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+.m4-eig text {
+  fill: var(--text-2);
+}
+.m4-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 6px;
+}
+.m4-key {
+  display: inline-block;
+  width: 14px;
+  height: 3px;
+  border-radius: 2px;
+  vertical-align: middle;
+}
+.m4-key-v1 {
+  background: var(--chart-1);
+}
+.m4-key-v2 {
+  background: var(--chart-2);
+}
+
+/* ---------- transformações 2 × 2 */
+.m4-tr {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+.m4-tr-main {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+.m4-tr-side {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+@container widget (min-width: 620px) {
+  .m4-tr-main {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 340px);
+    align-items: start;
+  }
+  .m4-tr-main > .m4-plane {
+    grid-column: 2;
+    grid-row: 1;
+  }
+}
+.m4-mat {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.m4-mat-name {
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+}
+.m4-mat-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 64px);
+  gap: 6px;
+  padding: 4px 8px;
+  border-left: 2px solid var(--text-3);
+  border-right: 2px solid var(--text-3);
+  border-radius: var(--r-xs);
+}
+.m4-mat-cell {
+  width: 100%;
+  text-align: center;
+}
+ul.m4-eig-list {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* ---------- produto escalar e cosseno */
+.m4-cosw,
+.m4-cos,
+.m4-search {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+.m4-cosw > .seg {
+  align-self: flex-start;
+}
+.m4-cos-main {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+@container widget (min-width: 560px) {
+  .m4-cos-main {
+    grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+.m4-plane-sm {
+  max-width: 300px;
+}
+.m4-cos-side {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.m4-vec {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.m4-vec-name {
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+.m4-txt-u {
+  color: var(--chart-1);
+}
+.m4-txt-v {
+  color: var(--chart-2);
+}
+.m4-vec-cell {
+  width: 64px;
+  text-align: center;
+}
+.m4-handle {
+  fill: transparent;
+  stroke: transparent;
+  cursor: grab;
+}
+.m4-handle:hover {
+  stroke: var(--text-3);
+}
+.m4-arc {
+  fill: none;
+  stroke: var(--text-3);
+  stroke-width: 1.5;
+}
+
+/* ---------- pesquisa em miniatura */
+.m4-search-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.m4-search-field .input {
+  width: 100%;
+}
+.m4-vocab {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 6px;
+}
+.m4-word {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 2px 8px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-xs);
+  background: var(--surface-2);
+  color: var(--text-3);
+  font-size: var(--fs-xs);
+}
+.m4-word.is-on {
+  border-color: var(--text-2);
+  color: var(--text);
+}
+.m4-word-n {
+  color: var(--text-3);
+}
+.m4-word.is-on .m4-word-n {
+  color: var(--text);
+}
+.m4-unknown {
+  margin-top: 6px;
+}
+ol.m4-rank {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.m4-rank li {
+  display: grid;
+  grid-template-columns: 40px 80px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  font-size: var(--fs-sm);
+}
+.m4-rank-score {
+  color: var(--text);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.m4-rank-bar,
+.m4-sv-bar {
+  display: block;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--surface-3);
+  overflow: hidden;
+}
+.m4-rank-bar > span,
+.m4-sv-bar > span {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--chart-1);
+}
+.m4-rank-doc {
+  min-width: 0;
+  color: var(--text-body);
+}
+
+/* ---------- SVD */
+.m4-svd {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+.m4-svd > .seg {
+  align-self: flex-start;
+}
+.m4-svd-imgs {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 200px));
+  gap: 16px;
+}
+.m4-px-fig {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+/* a imagem tem de ter os mesmos tons nos dois temas, como as figuras: fundo branco (--figure-bg) e cada píxel
+   preto (o mesmo branco invertido) com opacidade 1 − valor */
+.m4-px {
+  display: grid;
+  aspect-ratio: 1;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-xs);
+  background: var(--figure-bg);
+  overflow: hidden;
+}
+.m4-px > span {
+  background: var(--figure-bg);
+  filter: invert(1);
+}
+.m4-svd-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 8px;
+}
+.m4-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  min-width: 0;
+}
+.m4-stat-n {
+  font-size: var(--fs-xl);
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+ol.m4-sv {
+  list-style: none;
+  margin: 6px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 3px;
+}
+.m4-sv li {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) 48px;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.m4-sv li.is-on {
+  color: var(--text);
+}
+.m4-sv-bar > span {
+  background: var(--chart-2);
+}
+.m4-sv li.is-on .m4-sv-bar > span {
+  background: var(--chart-1);
+}
+.m4-sv-n {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}

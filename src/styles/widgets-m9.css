@@ -1,0 +1,271 @@
+/* widgets-m9.css — widgets do M9 (ver design/DESIGN.md). Prefixo m9-.
+   m9-corte: como o CART escolhe um corte · m9-floresta: bagging e random forests · m9-boosting: gradient boosting à mão.
+   Só tokens; os gráficos são SVG com viewBox fixo, que escalam com a largura do painel. */
+
+/* ---------- partilhado */
+.m9-wid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.m9-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+.m9-controls .seg {
+  max-width: 100%;
+}
+.m9-two {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+@container widget (min-width: 620px) {
+  .m9-two {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+.m9-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.m9-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.m9-range {
+  width: 100%;
+  margin: 0;
+  accent-color: var(--text);
+  cursor: pointer;
+}
+.m9-range:disabled {
+  cursor: default;
+  opacity: 0.5;
+}
+.m9-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.m9-text {
+  margin: 0;
+  max-width: 70ch;
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--text-body);
+}
+.m9-text strong {
+  font-weight: 500;
+  color: var(--text);
+}
+.m9-best-tag {
+  color: var(--ok);
+}
+.m9-tbl {
+  font-size: var(--fs-sm);
+}
+.m9-tbl th,
+.m9-tbl td {
+  padding: 8px 12px;
+}
+.m9-tbl tr.is-win td {
+  color: var(--text);
+}
+.m9-num {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+/* lados do corte e números soltos */
+.m9-sides,
+.m9-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 8px;
+}
+.m9-side,
+.m9-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding: 8px 12px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+}
+.m9-side-title {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--text);
+}
+.m9-side-val,
+.m9-stat-val {
+  font-size: var(--fs-lg);
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------- gráficos */
+.m9-plot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+}
+.m9-grid {
+  stroke: var(--grid-line);
+  stroke-width: 1;
+}
+.m9-axis {
+  stroke: var(--border-2);
+  stroke-width: 1;
+}
+.m9-tick,
+.m9-axis-label {
+  fill: var(--text-3);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+.m9-left-zone {
+  fill: var(--hatch);
+}
+.m9-cut {
+  stroke: var(--text);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+.m9-ref {
+  stroke: var(--text-3);
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+}
+.m9-line {
+  fill: none;
+  stroke: var(--text-3);
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+}
+.m9-pt {
+  fill: var(--surface-2);
+  stroke: var(--text-2);
+  stroke-width: 1.2;
+  cursor: pointer;
+}
+.m9-pt.is-best {
+  fill: var(--ok);
+  stroke: var(--ok);
+}
+.m9-pt.is-cur {
+  fill: var(--text);
+  stroke: var(--surface-2);
+  stroke-width: 1.5;
+}
+.m9-dot.is-hi {
+  fill: var(--chart-1);
+}
+.m9-dot.is-lo {
+  fill: var(--chart-2);
+}
+.m9-dot.is-oob {
+  fill: var(--surface-2);
+  stroke-width: 1.2;
+}
+.m9-dot.is-hi.is-oob {
+  stroke: var(--chart-1);
+}
+.m9-dot.is-lo.is-oob {
+  stroke: var(--chart-2);
+}
+.m9-fit {
+  fill: none;
+  stroke: var(--text);
+  stroke-width: 1.8;
+  stroke-linejoin: round;
+}
+.m9-res {
+  stroke: var(--text-4);
+  stroke-width: 1;
+}
+.m9-ref-line {
+  fill: none;
+  stroke-width: 1.2;
+  stroke-dasharray: 4 3;
+}
+.m9-ref-line.r0 {
+  stroke: var(--chart-1);
+}
+.m9-ref-line.r1 {
+  stroke: var(--chart-2);
+}
+.m9-ref-line.r2 {
+  stroke: var(--text-4);
+}
+.m9-region.c1 {
+  fill: var(--chart-1);
+  opacity: 0.16;
+}
+.m9-region.c0 {
+  fill: var(--chart-2);
+  opacity: 0.16;
+}
+
+/* legendas */
+.m9-key {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  vertical-align: baseline;
+}
+.m9-key-dot,
+.m9-key-c1 {
+  border-radius: 50%;
+  background: var(--chart-1);
+}
+.m9-key-c0 {
+  background: var(--chart-2);
+}
+.m9-key-oob {
+  border-radius: 50%;
+  border: 1.5px solid var(--chart-1);
+}
+.m9-key-fit,
+.m9-key-ref,
+.m9-key-res {
+  width: 16px;
+  height: 0;
+  border-radius: 0;
+  border-top: 2px solid var(--text);
+  vertical-align: middle;
+}
+.m9-key-res {
+  width: 0;
+  height: 12px;
+  border-top: 0;
+  border-left: 1.5px solid var(--text-4);
+}
+.m9-key-ref {
+  border-top-style: dashed;
+}
+.m9-key-ref.r0 {
+  border-top-color: var(--chart-1);
+}
+.m9-key-ref.r1 {
+  border-top-color: var(--chart-2);
+}
+.m9-key-ref.r2 {
+  border-top-color: var(--text-4);
+}

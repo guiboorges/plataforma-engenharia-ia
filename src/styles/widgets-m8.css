@@ -1,0 +1,285 @@
+/* widgets-m8.css — widgets do M8 (ver design/DESIGN.md). Prefixo m8-.
+   Regressão logística (Default) · caminhos do Ridge e do Lasso (Hitters) · geometria L1/L2.
+   Só tokens; as grelhas respondem à largura do painel (container queries). */
+
+/* ---------- partilhado */
+.m8-wid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+.m8-grid {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+@container widget (min-width: 640px) {
+  .m8-grid {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+.m8-col {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.m8-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.m8-params {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+@container widget (min-width: 560px) {
+  .m8-params {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.m8-slider {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.m8-slider-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+.m8-val {
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.m8-range {
+  width: 100%;
+  margin: 0;
+  accent-color: var(--text);
+  cursor: pointer;
+}
+.m8-verdict {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 10px;
+  color: var(--text-2);
+}
+
+/* leitura de valores */
+.m8-readout {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+}
+.m8-readout > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  min-height: 34px;
+  padding: 6px 12px;
+  border-top: 1px solid var(--border-2);
+}
+.m8-readout > div:first-child {
+  border-top: 0;
+}
+.m8-readout dt {
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+.m8-readout dd {
+  margin: 0;
+  font-size: var(--fs-sm);
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- gráficos SVG */
+.m8-plot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  font-family: var(--font);
+}
+.m8-plot-grid {
+  stroke: var(--border);
+  stroke-width: 1;
+}
+.m8-plot-zero {
+  stroke: var(--border-2);
+  stroke-width: 1;
+}
+.m8-plot-tick {
+  fill: var(--text-3);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+.m8-plot-label,
+.m8-plot-note {
+  fill: var(--text-3);
+  font-size: 10px;
+}
+.m8-curve {
+  fill: none;
+  stroke: var(--chart-1);
+  stroke-width: 1.75;
+  stroke-linejoin: round;
+}
+.m8-line-dash {
+  fill: none;
+  stroke: var(--chart-2);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+.m8-pt {
+  fill: var(--chart-2);
+  opacity: 0.55;
+}
+.m8-vline {
+  stroke: var(--text-3);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+.m8-mark {
+  fill: var(--chart-1);
+  stroke: var(--surface-2);
+  stroke-width: 1.5;
+}
+
+/* ---------- caminhos do Ridge e do Lasso */
+.m8-path {
+  fill: none;
+  stroke: var(--chart-2);
+  stroke-width: 1;
+  opacity: 0.55;
+  stroke-linejoin: round;
+}
+.m8-path.is-on {
+  stroke: var(--chart-1);
+  stroke-width: 2;
+  opacity: 1;
+}
+.m8-coefs {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.m8-coef {
+  display: grid;
+  grid-template-columns: 7.5rem minmax(0, 1fr) 4.2rem;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-height: 26px;
+  padding: 2px 8px;
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  background: none;
+  color: var(--text-body);
+  font-size: var(--fs-xs);
+  text-align: left;
+  cursor: pointer;
+}
+.m8-coef:hover {
+  background: var(--surface-3);
+}
+.m8-coef.is-on {
+  border-color: var(--border-2);
+  background: var(--surface-2);
+  color: var(--text);
+}
+.m8-coef-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.m8-coef-track {
+  position: relative;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--surface-2);
+}
+.m8-coef-track::after {
+  content: "";
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  left: 50%;
+  width: 1px;
+  background: var(--border-2);
+}
+.m8-coef-bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-radius: 2px;
+  background: var(--chart-2);
+}
+.m8-coef.is-on .m8-coef-bar {
+  background: var(--chart-1);
+}
+.m8-coef-val {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.m8-coef.is-zero .m8-coef-name,
+.m8-coef.is-zero .m8-coef-val {
+  color: var(--text-3);
+}
+
+/* ---------- geometria L1/L2 */
+.m8-panels {
+  display: grid;
+  gap: 14px;
+  min-width: 0;
+}
+@container widget (min-width: 560px) {
+  .m8-panels {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+.m8-panel-title {
+  margin: 0;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--text);
+}
+.m8-region {
+  fill: var(--hatch);
+  stroke: var(--chart-2);
+  stroke-width: 1;
+}
+.m8-ell {
+  fill: none;
+  stroke: var(--chart-2);
+  stroke-width: 1;
+  opacity: 0.7;
+}
+.m8-ell.is-touch {
+  stroke: var(--chart-1);
+  stroke-width: 1.5;
+  opacity: 1;
+}
+.m8-ols {
+  fill: none;
+  stroke: var(--chart-1);
+  stroke-width: 1.5;
+}

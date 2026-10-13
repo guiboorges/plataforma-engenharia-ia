@@ -1,0 +1,331 @@
+/* widgets-m10.css — widgets do M10 (ver design/DESIGN.md). Prefixo m10-.
+   m10-km: k-means passo a passo · m10-db: DBSCAN nas duas luas · m10-pca: PCA em duas dimensões.
+   Só tokens. Os grupos distinguem-se pela forma do marcador e por três tons de cinza (--chart-1, --chart-2, --text-3),
+   sem cores de marca; os desenhos de pontos usam a mesma unidade nos dois eixos. */
+
+/* ---------- partilhado */
+.m10-km,
+.m10-db,
+.m10-pca {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+.m10-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+}
+.m10-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.m10-pill-note {
+  color: var(--text-3);
+  font-size: var(--fs-xs);
+}
+.pill.is-on .m10-pill-note {
+  color: inherit;
+  opacity: 0.7;
+}
+.m10-sliders {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+.m10-range {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.m10-range input[type="range"] {
+  width: 100%;
+  accent-color: var(--text);
+}
+.m10-plotwrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.m10-plot {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  overflow: hidden;
+}
+.m10-plot.is-clickable {
+  cursor: crosshair;
+}
+.m10-axis0 {
+  stroke: var(--border-2);
+  stroke-width: 1;
+}
+.m10-axes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+}
+.m10-axes span:last-child {
+  color: var(--text-3);
+}
+
+/* marcadores: forma = grupo, tom = grupo (18 combinações) */
+.m10-pt {
+  stroke-width: 1;
+}
+.m10-t0 {
+  fill: var(--chart-1);
+  stroke: var(--chart-1);
+}
+.m10-t1 {
+  fill: var(--chart-2);
+  stroke: var(--chart-2);
+}
+.m10-t2 {
+  fill: var(--text-3);
+  stroke: var(--text-3);
+}
+.m10-pt.is-hollow {
+  fill: none;
+  stroke-width: 1.2;
+}
+.m10-pt.is-idle {
+  opacity: 0.7;
+}
+.m10-noise {
+  fill: none;
+  stroke: var(--text-3);
+  stroke-width: 1.2;
+  stroke-linecap: round;
+}
+.m10-legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 14px;
+  color: var(--text-2);
+}
+.m10-leg {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+.m10-swatch {
+  width: 14px;
+  height: 14px;
+  flex: none;
+}
+.m10-tbl {
+  font-size: var(--fs-sm);
+}
+.m10-tbl caption {
+  padding-bottom: 6px;
+  text-align: left;
+}
+.m10-tbl th,
+.m10-tbl td {
+  padding: 6px 10px;
+}
+.m10-tbl tr.is-best td {
+  color: var(--text);
+  font-weight: 500;
+}
+.m10-num {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.m10-big {
+  font-size: var(--fs-xl);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.m10-pre {
+  margin: 0;
+  padding: 10px 12px;
+  overflow-x: auto;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  color: var(--text-body);
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  line-height: 1.6;
+  white-space: pre;
+}
+
+/* ---------- k-means */
+.m10-trail {
+  fill: none;
+  stroke: var(--text-2);
+  stroke-width: 1.2;
+  stroke-dasharray: 3 3;
+}
+.m10-center-halo {
+  stroke: var(--surface-2);
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+.m10-center-x {
+  stroke: var(--text);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+.m10-seq {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 0;
+  color: var(--text-body);
+  overflow-wrap: anywhere;
+}
+
+/* ---------- DBSCAN */
+.m10-stats {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 8px;
+}
+.m10-stats > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding: 8px 10px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+}
+.m10-eps {
+  fill: var(--hatch);
+  stroke: var(--text-2);
+  stroke-width: 1;
+  stroke-dasharray: 4 3;
+}
+.m10-ring {
+  fill: none;
+  stroke: var(--text-2);
+  stroke-width: 1;
+}
+.m10-sel {
+  fill: none;
+  stroke: var(--text);
+  stroke-width: 2;
+}
+.m10-kd {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.m10-kd-svg,
+.m10-curve-svg {
+  display: block;
+  width: 100%;
+  height: 120px;
+  overflow: visible;
+}
+.m10-curve-svg {
+  height: 90px;
+}
+.m10-kd-core {
+  fill: var(--hatch);
+}
+.m10-kd-line {
+  fill: none;
+  stroke: var(--chart-1);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+.m10-kd-eps {
+  stroke: var(--text-2);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+.m10-kd-foot {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-family: var(--mono);
+}
+.m10-kd-foot span:nth-child(2) {
+  font-family: var(--font);
+  text-align: center;
+}
+
+/* ---------- PCA */
+.m10-pca-main {
+  display: grid;
+  gap: 16px;
+  min-width: 0;
+}
+.m10-pca-svg {
+  max-width: 360px;
+}
+.m10-pca-side {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.m10-cloud {
+  fill: var(--chart-2);
+  opacity: 0.75;
+}
+.m10-shadow {
+  fill: var(--chart-1);
+}
+.m10-drop {
+  stroke: var(--border-2);
+  stroke-width: 0.8;
+}
+.m10-dir {
+  stroke: var(--chart-1);
+  stroke-width: 1.5;
+}
+.m10-pc1 {
+  stroke: var(--text-2);
+  stroke-width: 1.2;
+  stroke-dasharray: 6 4;
+}
+.m10-pc2 {
+  stroke: var(--text-4);
+  stroke-width: 1;
+  stroke-dasharray: 2 3;
+}
+.m10-curve {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+
+@container widget (min-width: 620px) {
+  .m10-pca-main {
+    grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+@container widget (max-width: 520px) {
+  .m10-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+@container widget (max-width: 360px) {
+  .m10-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .m10-kd-svg {
+    height: 100px;
+  }
+}

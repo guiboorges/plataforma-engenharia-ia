@@ -1,0 +1,164 @@
+/* Lunor: cinzas neutros quase pretos, contornos finos, uma fonte, quase sem cor.
+   Tema escuro primeiro; o claro usa a mesma escala invertida. */
+:root {
+  --bg: #0c0c0d;
+  --surface: #141416;
+  --surface-2: #1a1a1d;
+  --surface-3: #222226;
+  --border: #222225;
+  --border-2: #2c2c31;
+  --text: #f1f1f2;
+  --text-body: #d6d6da;
+  --text-2: #a0a0a8;
+  --text-3: #6c6c75;
+  --text-4: #45454c;
+  --primary-bg: #f1f1f2;
+  --primary-fg: #0c0c0d;
+  --ok: #45d18f;
+  --ok-bg: rgba(69, 209, 143, 0.12);
+  --bad: #f26d6d;
+  --bad-bg: rgba(242, 109, 109, 0.12);
+  --warn: #f2b84b;
+  --warn-bg: rgba(242, 184, 75, 0.12);
+  --info: #7aa9ff;
+  --info-bg: rgba(122, 169, 255, 0.12);
+  --grid-line: rgba(255, 255, 255, 0.035);
+  --hatch: rgba(255, 255, 255, 0.075);
+  --chart-1: #e9e9eb;
+  --chart-2: #7c7c85;
+  --illus-a: #2a2a2f;
+  --illus-b: #1d1d21;
+  --illus-line: #3a3a41;
+  --illus-hi: #55555e;
+  --f0: #4f8cff;
+  --f1: #9b8cff;
+  --f2: #45d18f;
+  --f3: #f2b84b;
+  --f4: #ff8a4c;
+  --f5: #ff6b8a;
+  --f6: #a0a0a8;
+  --syn-kw: #c4b5fd;
+  --syn-str: #8fd5a6;
+  --syn-com: #6c6c75;
+  --syn-num: #f5b47a;
+  --syn-fn: #93b8ff;
+  --shadow-pop: 0 12px 40px rgba(0, 0, 0, 0.55);
+  --scrim: rgba(0, 0, 0, 0.55);
+  --figure-bg: #ffffff;
+
+  --font: "Geist", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --fs-xs: 12px;
+  --fs-sm: 13px;
+  --fs-md: 14px;
+  --fs-lg: 15px;
+  --fs-xl: 18px;
+  --fs-2xl: 26px;
+  --fs-num: 30px;
+  --r: 12px;
+  --r-md: 10px;
+  --r-sm: 8px;
+  --r-xs: 6px;
+  --side-w: 252px;
+  --gutter: 16px;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #fafafa;
+    --surface: #ffffff;
+    --surface-2: #f5f5f6;
+    --surface-3: #ececee;
+    --border: #e8e8eb;
+    --border-2: #dcdce0;
+    --text: #18181b;
+    --text-body: #2e2e33;
+    --text-2: #5e5e67;
+    --text-3: #9898a1;
+    --text-4: #c6c6cc;
+    --primary-bg: #18181b;
+    --primary-fg: #ffffff;
+    --ok: #16a34a;
+    --ok-bg: rgba(22, 163, 74, 0.1);
+    --bad: #dc2626;
+    --bad-bg: rgba(220, 38, 38, 0.08);
+    --warn: #b45309;
+    --warn-bg: rgba(217, 119, 6, 0.1);
+    --info: #2563eb;
+    --info-bg: rgba(37, 99, 235, 0.08);
+    --grid-line: rgba(0, 0, 0, 0.045);
+    --hatch: rgba(0, 0, 0, 0.08);
+    --chart-1: #18181b;
+    --chart-2: #a1a1aa;
+    --illus-a: #ececee;
+    --illus-b: #f7f7f8;
+    --illus-line: #d4d4d9;
+    --illus-hi: #b4b4bb;
+    --f0: #2563eb;
+    --f1: #6d5ce8;
+    --f2: #16a34a;
+    --f3: #d99a06;
+    --f4: #ea580c;
+    --f5: #e11d48;
+    --f6: #71717a;
+    --syn-kw: #6d28d9;
+    --syn-str: #15803d;
+    --syn-com: #9898a1;
+    --syn-num: #c2410c;
+    --syn-fn: #1d4ed8;
+    --shadow-pop: 0 12px 40px rgba(0, 0, 0, 0.12);
+    --scrim: rgba(0, 0, 0, 0.3);
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --surface-2: #f5f5f6;
+  --surface-3: #ececee;
+  --border: #e8e8eb;
+  --border-2: #dcdce0;
+  --text: #18181b;
+  --text-body: #2e2e33;
+  --text-2: #5e5e67;
+  --text-3: #9898a1;
+  --text-4: #c6c6cc;
+  --primary-bg: #18181b;
+  --primary-fg: #ffffff;
+  --ok: #16a34a;
+  --ok-bg: rgba(22, 163, 74, 0.1);
+  --bad: #dc2626;
+  --bad-bg: rgba(220, 38, 38, 0.08);
+  --warn: #b45309;
+  --warn-bg: rgba(217, 119, 6, 0.1);
+  --info: #2563eb;
+  --info-bg: rgba(37, 99, 235, 0.08);
+  --grid-line: rgba(0, 0, 0, 0.045);
+  --hatch: rgba(0, 0, 0, 0.08);
+  --chart-1: #18181b;
+  --chart-2: #a1a1aa;
+  --illus-a: #ececee;
+  --illus-b: #f7f7f8;
+  --illus-line: #d4d4d9;
+  --illus-hi: #b4b4bb;
+  --f0: #2563eb;
+  --f1: #6d5ce8;
+  --f2: #16a34a;
+  --f3: #d99a06;
+  --f4: #ea580c;
+  --f5: #e11d48;
+  --f6: #71717a;
+  --syn-kw: #6d28d9;
+  --syn-str: #15803d;
+  --syn-com: #9898a1;
+  --syn-num: #c2410c;
+  --syn-fn: #1d4ed8;
+  --shadow-pop: 0 12px 40px rgba(0, 0, 0, 0.12);
+  --scrim: rgba(0, 0, 0, 0.3);
+  color-scheme: light;
+}
+@media (min-width: 1024px) {
+  :root {
+    --gutter: 28px;
+  }
+}

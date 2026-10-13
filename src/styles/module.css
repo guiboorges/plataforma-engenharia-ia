@@ -1,0 +1,517 @@
+/* module.css — página do módulo: cabeçalho, separadores, Plano, Apostila, Notas e modo documento.
+   Prefixos: mod-, plan-, doc-. Ver design/DESIGN.md. */
+
+/* ---------- página do módulo */
+.mod-page {
+  /* posição e altura da barra de separadores fixa (outras áreas podem usar estas variáveis) */
+  --mod-tabs-top: env(safe-area-inset-top, 0px);
+  --mod-tabs-h: 52px;
+}
+@media (max-width: 1023px) {
+  .mod-page {
+    /* a barra de topo do telemóvel tem cerca de 47px */
+    --mod-tabs-top: calc(47px + env(safe-area-inset-top, 0px));
+  }
+}
+.mod-page [id] {
+  scroll-margin-top: calc(var(--mod-tabs-top) + var(--mod-tabs-h) + 12px);
+}
+
+/* metadados do cabeçalho */
+.mod-meta {
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+.mod-meta + .mod-meta::before {
+  content: "·";
+  margin-right: 10px;
+  color: var(--text-4);
+}
+.mod-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.mod-progress-label {
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+
+/* separadores (Seg) fixos no topo ao deslizar */
+.mod-tabs {
+  position: sticky;
+  top: var(--mod-tabs-top);
+  z-index: 20;
+  display: flex;
+  min-width: 0;
+  margin-block: -8px;
+  padding-block: 8px;
+  background: var(--bg);
+}
+.mod-tabs > .seg {
+  min-width: 0;
+}
+
+/* módulo anterior / seguinte */
+.mod-pager {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+  padding-top: 4px;
+}
+.mod-pager:empty {
+  display: none;
+}
+@media (min-width: 640px) {
+  .mod-pager {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .mod-pager-btn.is-next {
+    grid-column: 2;
+  }
+}
+.mod-pager-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  min-height: 60px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  background: var(--surface);
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+.mod-pager-btn:hover {
+  border-color: var(--border-2);
+  background: var(--surface-2);
+}
+.mod-pager-btn.is-next {
+  text-align: right;
+}
+.mod-pager-ico {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  color: var(--text-2);
+}
+.mod-pager-btn:hover .mod-pager-ico {
+  color: var(--text);
+}
+.mod-pager-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.mod-pager-dir {
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.mod-pager-title {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ---------- notas */
+.mod-notes-count {
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.mod-notes .mod-notes-area {
+  min-height: 360px;
+  font-size: var(--fs-md);
+  line-height: 1.7;
+}
+
+/* ---------- plano */
+.plan {
+  container-type: inline-size;
+}
+.plan-grid {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    "intro"
+    "sessions"
+    "reads";
+  align-items: start;
+}
+.plan-intro {
+  grid-area: intro;
+  container: plan-intro / inline-size;
+}
+.plan-sessions {
+  grid-area: sessions;
+}
+.plan-reads {
+  grid-area: reads;
+}
+@container (min-width: 760px) {
+  .plan-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: auto 1fr;
+    grid-template-areas:
+      "intro sessions"
+      "reads sessions";
+  }
+}
+.plan-learn {
+  max-width: 70ch;
+  font-size: var(--fs-lg);
+  line-height: 1.7;
+  color: var(--text-body);
+}
+.plan-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+/* objetivos */
+.plan-outcomes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.plan-outcomes li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+  font-size: var(--fs-md);
+  line-height: 1.55;
+  color: var(--text-body);
+}
+.plan-outcomes .icon {
+  margin-top: 4px;
+  color: var(--text-3);
+}
+
+/* partes do módulo */
+.plan-part-text {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+.plan-part-name {
+  flex: none;
+  width: 76px;
+  font-weight: 500;
+  color: var(--text);
+}
+.plan-part-what {
+  min-width: 0;
+  color: var(--text-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.plan-part-time {
+  flex: none;
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+button.plan-part:hover .plan-part-time {
+  color: var(--text-2);
+}
+@container plan-intro (max-width: 560px) {
+  .plan-part {
+    padding-block: 7px;
+  }
+  .plan-part-text {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1px;
+  }
+  .plan-part-name {
+    width: auto;
+  }
+  .plan-part-what {
+    font-size: var(--fs-xs);
+    line-height: 1.45;
+    white-space: normal;
+  }
+}
+
+/* sessões */
+.plan-session-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.plan-session {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+.plan-session + .plan-session {
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.plan-session-head {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px 10px;
+  min-height: 24px;
+}
+.plan-session-label {
+  min-width: 0;
+  font-size: var(--fs-md);
+  font-weight: 500;
+  color: var(--text);
+}
+.plan-session-min {
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.plan-session-head .chip {
+  margin-left: auto;
+}
+
+/* linhas com caixa de seleção (tarefas e leituras) */
+.plan-row {
+  flex-wrap: wrap;
+  row-gap: 4px;
+  padding-block: 8px;
+}
+.plan-row > .check {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+.plan-row-aside {
+  display: flex;
+  align-items: center;
+  flex: none;
+  margin-left: auto;
+}
+
+/* referências citadas */
+.plan-cited {
+  margin: 0;
+  padding-left: 1.2em;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: var(--fs-sm);
+  line-height: 1.55;
+  color: var(--text-2);
+  overflow-wrap: anywhere;
+}
+.plan-cited li::marker {
+  color: var(--text-4);
+}
+
+/* ---------- apostila e modo documento */
+.doc-card {
+  gap: 16px;
+}
+.doc-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border);
+}
+.doc-head-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.doc-body {
+  gap: 24px;
+}
+.doc-intro {
+  max-width: 70ch;
+  color: var(--text-2);
+}
+.doc-sec {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+.doc-sec + .doc-sec {
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.doc-sec .doc-sec-title {
+  margin: 0;
+  font-size: var(--fs-lg);
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--text);
+}
+/* texto corrido com largura de leitura confortável; tabelas, código e widgets usam a largura toda */
+.doc-sec > p,
+.doc-sec > ul,
+.doc-sec > ol,
+.doc-sec > blockquote,
+.doc-md .md > p,
+.doc-md .md > ul,
+.doc-md .md > ol,
+.doc-md .md > blockquote {
+  max-width: 70ch;
+}
+.doc-md .md > :first-child {
+  margin-top: 0;
+}
+
+/* linha de ações por baixo de um cartão */
+.doc-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+.doc-actions-main {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  min-width: 0;
+}
+
+/* ícone em caixa, como os da referência */
+.doc-ico {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  color: var(--text-2);
+}
+
+/* gabarito fechado */
+.doc-locked {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+}
+.doc-locked-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  min-width: 0;
+}
+.doc-locked-body .doc-actions-main {
+  padding-top: 8px;
+}
+
+/* respostas (exercícios e correção) */
+.doc-answers-area {
+  min-height: 280px;
+}
+.doc-answers {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  /* respostas escritas pelo aluno podem ter ligações longas */
+  overflow-wrap: anywhere;
+}
+
+/* proposta de correção do Claude */
+.doc-q {
+  align-items: baseline;
+  padding-block: 8px;
+}
+.doc-q-n {
+  flex: none;
+  min-width: 24px;
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.doc-q-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--text-body);
+  overflow-wrap: anywhere;
+}
+.doc-q-pts {
+  flex: none;
+  font-size: var(--fs-xs);
+  color: var(--text);
+}
+.doc-ai-sum {
+  max-width: 70ch;
+  font-size: var(--fs-md);
+  line-height: 1.6;
+  color: var(--text-body);
+}
+.doc-score {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 10px;
+  min-width: 0;
+}
+.doc-score label {
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+.doc-score-input {
+  width: 6rem;
+}
+
+/* início da prova */
+.doc-start {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  min-width: 0;
+}
+.doc-lock-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+.doc-lock-line .icon {
+  color: var(--text-3);
+}
+
+/* prova em curso (modo documento) */
+.doc-exam-area {
+  min-height: 360px;
+}

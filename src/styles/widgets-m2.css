@@ -1,0 +1,326 @@
+/* widgets-m2.css — widgets do M2 (ver design/DESIGN.md). Prefixo: m2-.
+   m2-slice (índices e fatias), m2-alias (duas variáveis, a mesma lista), m2-loop (ciclos passo a passo).
+   As grelhas respondem à largura do painel (container "widget" de widgets.css). */
+
+/* ---------- partilhado */
+.m2-label {
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  color: var(--text-3);
+}
+.m2-console {
+  gap: 4px;
+}
+.m2-console-in {
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  overflow-wrap: anywhere;
+}
+.m2-console-out {
+  color: var(--ok);
+  font-size: var(--fs-sm);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.m2-console-err {
+  color: var(--bad);
+  font-size: var(--fs-sm);
+  overflow-wrap: anywhere;
+}
+
+/* ---------- índices e fatias */
+.m2-slice {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+.m2-slice-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.m2-slice-def {
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+  overflow-wrap: anywhere;
+}
+.m2-cells {
+  display: flex;
+  gap: 4px;
+  min-width: 0;
+  overflow-x: auto;
+  padding-bottom: 2px;
+}
+.m2-cell {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 44px;
+  display: grid;
+  grid-template-rows: 16px auto auto;
+  justify-items: center;
+  gap: 4px;
+  padding: 4px 4px 6px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+}
+.m2-cell.is-on {
+  border-color: var(--text);
+  background: var(--surface-3);
+}
+.m2-cell-order {
+  font-size: var(--fs-xs);
+  line-height: 16px;
+  color: var(--text);
+}
+.m2-cell-val {
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+.m2-cell.is-on .m2-cell-val {
+  color: var(--text);
+}
+.m2-cell-idx {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: var(--fs-xs);
+  line-height: 1.35;
+  color: var(--text-3);
+}
+.m2-legend {
+  margin-top: -4px;
+}
+.m2-slice-inputs {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+}
+.m2-slice-code {
+  font-size: var(--fs-md);
+  color: var(--text-2);
+}
+.m2-slot .input {
+  width: 64px;
+  text-align: center;
+}
+
+/* ---------- duas variáveis, a mesma lista */
+.m2-alias {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+.m2-alias-controls {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+.m2-alias-grid {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+@container widget (min-width: 560px) {
+  .m2-alias-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+    align-items: start;
+  }
+}
+.m2-alias-code,
+.m2-alias-mem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+}
+.m2-alias-code pre {
+  margin: 0;
+  padding: 10px 12px;
+  overflow-x: auto;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  color: var(--text-body);
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+.m2-line-new {
+  color: var(--text);
+  font-weight: 500;
+}
+.m2-line-print {
+  color: var(--text-3);
+}
+.m2-objs {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.m2-obj {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+.m2-obj-names {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--text-3);
+}
+.m2-name {
+  display: inline-grid;
+  place-items: center;
+  min-width: 24px;
+  height: 24px;
+  padding: 0 6px;
+  border: 1px solid var(--text);
+  border-radius: var(--r-xs);
+  color: var(--text);
+  font-size: var(--fs-sm);
+}
+.m2-obj-box {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding: 6px 8px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+}
+.m2-obj-tag {
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.m2-obj-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3px;
+}
+.m2-obj-item {
+  display: inline-grid;
+  place-items: center;
+  min-width: 26px;
+  height: 24px;
+  padding: 0 4px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-xs);
+  background: var(--surface);
+  color: var(--text);
+  font-size: var(--fs-xs);
+}
+
+/* ---------- ciclos passo a passo */
+.m2-loop {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+.m2-loop-grid {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+@container widget (min-width: 620px) {
+  .m2-loop-grid {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+    align-items: start;
+  }
+}
+.m2-loop-code {
+  margin: 0;
+  padding: 8px 0;
+  overflow-x: auto;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  list-style: none;
+  font-size: 12.5px;
+  line-height: 1.7;
+}
+.m2-loop-code li {
+  display: flex;
+  width: max-content;
+  min-width: 100%;
+  gap: 10px;
+  padding: 0 12px 0 0;
+  border-left: 2px solid transparent;
+  white-space: pre;
+}
+.m2-loop-code li.is-on {
+  border-left-color: var(--text);
+  background: var(--surface-3);
+}
+.m2-loop-ln {
+  flex: none;
+  width: 28px;
+  text-align: right;
+  color: var(--text-4);
+  user-select: none;
+}
+.m2-loop-code li.is-on .m2-loop-ln {
+  color: var(--text);
+}
+.m2-loop-src {
+  color: var(--text-body);
+}
+.m2-loop-side {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+.m2-vars {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.m2-vars dl {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+}
+.m2-var {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  min-width: 0;
+  padding: 4px 10px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-xs);
+  background: var(--surface-2);
+}
+.m2-var dt {
+  flex: none;
+  color: var(--text-2);
+  font-size: var(--fs-xs);
+}
+.m2-var dt.m2-var-tmp {
+  font-style: italic;
+  color: var(--text-3);
+}
+.m2-var dd {
+  margin: 0;
+  min-width: 0;
+  color: var(--text);
+  font-size: var(--fs-xs);
+  overflow-wrap: anywhere;
+}
+.m2-loop-out {
+  margin: 0;
+  min-height: 32px;
+  padding: 6px 10px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-xs);
+  background: var(--surface-2);
+  color: var(--ok);
+  font-size: var(--fs-xs);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}

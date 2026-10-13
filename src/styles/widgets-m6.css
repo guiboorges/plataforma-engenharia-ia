@@ -1,0 +1,397 @@
+/* widgets-m6.css — widgets do M6 (ver design/DESIGN.md). Prefixo m6-.
+   m6-by: árvore de Bayes · m6-lc: lei dos grandes números e limite central · m6-ab: teste A/B.
+   Só tokens; os gráficos são SVG esticados à largura do painel, com as etiquetas em HTML. */
+
+/* ---------- partilhado */
+.m6-by,
+.m6-lc,
+.m6-ab {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+.m6-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.m6-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 12px;
+}
+.m6-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.m6-field .input {
+  width: 100%;
+}
+.m6-input-pct {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.m6-input-pct .input {
+  width: 6rem;
+}
+.m6-tbl {
+  font-size: var(--fs-sm);
+}
+.m6-tbl th,
+.m6-tbl td {
+  padding: 6px 10px;
+}
+.m6-num {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.m6-big {
+  font-size: var(--fs-2xl);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.m6-sim {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+/* legendas */
+.m6-key {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+  vertical-align: baseline;
+}
+.m6-key-bar {
+  background: var(--chart-2);
+  opacity: 0.6;
+}
+.m6-key-hi {
+  background: var(--bad);
+}
+.m6-key-band {
+  background: var(--hatch);
+  border: 1px solid var(--border-2);
+}
+.m6-key-curve,
+.m6-key-ref {
+  width: 16px;
+  height: 0;
+  border-radius: 0;
+  border-top: 2px dashed var(--chart-1);
+  vertical-align: middle;
+}
+.m6-key-ref {
+  border-top-color: var(--text-2);
+}
+.m6-key-zero,
+.m6-key-obs {
+  width: 0;
+  height: 12px;
+  border-radius: 0;
+  border-left: 2px solid var(--text);
+  vertical-align: middle;
+}
+.m6-key-obs {
+  border-left: 2px dashed var(--text-2);
+}
+.m6-key-line {
+  width: 16px;
+  height: 2px;
+  border-radius: 1px;
+  vertical-align: middle;
+}
+.m6-key-line.is-s1 {
+  background: var(--chart-1);
+}
+.m6-key-line.is-s2 {
+  background: var(--chart-2);
+}
+.m6-key-line.is-s3 {
+  background: var(--text-4);
+}
+
+/* ---------- gráficos */
+.m6-chart {
+  min-width: 0;
+}
+.m6-svg {
+  display: block;
+  width: 100%;
+  height: 180px;
+  overflow: visible;
+}
+.m6-bar {
+  fill: var(--chart-2);
+  opacity: 0.6;
+}
+.m6-bar.is-hi {
+  fill: var(--bad);
+  opacity: 0.85;
+}
+.m6-band {
+  fill: var(--hatch);
+}
+.m6-curve {
+  fill: none;
+  stroke: var(--chart-1);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 4;
+}
+.m6-vline {
+  stroke-width: 1.5;
+}
+.m6-vline.is-zero {
+  stroke: var(--text);
+}
+.m6-vline.is-obs,
+.m6-vline.is-ref {
+  stroke: var(--text-2);
+  stroke-dasharray: 4 3;
+}
+.m6-axis {
+  stroke: var(--border-2);
+  stroke-width: 1;
+}
+.m6-grid {
+  stroke: var(--grid-line);
+  stroke-width: 1;
+}
+.m6-line {
+  fill: none;
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+.m6-line.is-s1 {
+  stroke: var(--chart-1);
+}
+.m6-line.is-s2 {
+  stroke: var(--chart-2);
+}
+.m6-line.is-s3 {
+  stroke: var(--text-4);
+}
+.m6-ticks {
+  position: relative;
+  height: 20px;
+  margin-top: 4px;
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.m6-ticks span {
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
+.m6-ticks span.is-start {
+  transform: none;
+}
+.m6-ticks span.is-end {
+  transform: translateX(-100%);
+}
+.m6-chart-y {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 8px;
+}
+.m6-yticks {
+  position: relative;
+  height: 180px;
+  min-width: 2.2rem;
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+  text-align: right;
+}
+.m6-yticks span {
+  position: absolute;
+  right: 0;
+  transform: translateY(-50%);
+}
+.m6-plot {
+  min-width: 0;
+}
+
+/* ---------- árvore de Bayes */
+.m6-tree {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 6px 8px;
+  align-items: center;
+}
+.m6-node {
+  display: grid;
+  place-items: center;
+  min-height: 40px;
+  padding: 6px 8px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  color: var(--text-body);
+  font-size: var(--fs-sm);
+  line-height: 1.35;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.m6-node.is-hit {
+  border-color: var(--text);
+  color: var(--text);
+}
+.m6-root {
+  grid-column: 2 / 4;
+}
+.m6-l1a,
+.m6-e1 {
+  grid-column: 1 / 3;
+}
+.m6-l1b,
+.m6-e2 {
+  grid-column: 3 / 5;
+}
+.m6-edge {
+  position: relative;
+  padding-top: 10px;
+  font-size: var(--fs-xs);
+  line-height: 1.35;
+  color: var(--text-3);
+  text-align: center;
+}
+.m6-edge::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  height: 8px;
+  border-left: 1px solid var(--border-2);
+}
+.m6-split {
+  display: flex;
+  height: 10px;
+  overflow: hidden;
+  border-radius: 5px;
+  background: var(--surface-3);
+}
+.m6-split-a {
+  background: var(--chart-1);
+}
+.m6-split-b {
+  background: var(--chart-2);
+  opacity: 0.6;
+}
+.m6-compare {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.m6-compare > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface);
+}
+
+/* ---------- limite central */
+.m6-ns {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+/* ---------- teste A/B */
+.m6-ab-in {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+.m6-ab-group {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
+  padding: 6px 12px 12px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+}
+.m6-ab-group legend {
+  padding: 0 4px;
+  font-weight: 500;
+  color: var(--text);
+}
+.m6-ci {
+  position: relative;
+  height: 40px;
+  margin: 0 8px;
+}
+.m6-ci-axis {
+  position: absolute;
+  top: 14px;
+  left: 0;
+  right: 0;
+  border-top: 1px solid var(--border-2);
+}
+.m6-ci-zero {
+  position: absolute;
+  top: 6px;
+  height: 16px;
+  border-left: 1.5px solid var(--text);
+}
+.m6-ci-zero span {
+  position: absolute;
+  top: 18px;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+}
+.m6-ci-bar {
+  position: absolute;
+  top: 11px;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--chart-2);
+  opacity: 0.7;
+}
+.m6-ci-dot {
+  position: absolute;
+  top: 9px;
+  width: 10px;
+  height: 10px;
+  margin-left: -5px;
+  border-radius: 50%;
+  background: var(--chart-1);
+}
+
+@container widget (max-width: 440px) {
+  .m6-ab-in,
+  .m6-compare {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .m6-tree {
+    gap: 6px 4px;
+  }
+  .m6-node {
+    padding: 6px 4px;
+    font-size: var(--fs-xs);
+  }
+  .m6-svg,
+  .m6-yticks {
+    height: 150px;
+  }
+}

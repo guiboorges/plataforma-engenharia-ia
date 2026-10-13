@@ -1,0 +1,758 @@
+/* exam.css — prova do módulo, prova em curso, correção, gabarito e simulado
+   (prefixos exam-, grade-, gab-, practice-). Ver design/DESIGN.md.
+   .exam-shell/.exam-bar/.exam-doc*, .exam-card e .gab* também são usados pelo modo
+   documento e pelo exame de fase. */
+
+/* negrito do markdown nas perguntas e a nota no rodapé da correção: 500, nunca 700 */
+.exam-tab strong,
+.exam-shell strong,
+.grade strong,
+.gab-tab strong {
+  font-weight: 500;
+}
+
+/* ---------- linhas partilhadas da área (dentro de .row-item) */
+.exam-row-main {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.exam-row-meta {
+  flex: 0 1 auto;
+  font-size: var(--fs-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-3);
+  text-align: right;
+}
+
+/* ---------- cartão da prova */
+.exam-card {
+  gap: 14px;
+}
+.exam-card > .btn,
+.exam-card > .confirm {
+  align-self: flex-start;
+}
+.exam-card-head {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.exam-card-meta {
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+.exam-card .card-head .chip {
+  flex: none;
+}
+.exam-rules {
+  max-width: 70ch;
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--text-2);
+}
+.exam-pre {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.exam-pre-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+  grid-template-columns: minmax(0, 1fr);
+}
+@media (min-width: 720px) {
+  .exam-pre-list {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+.exam-pre-list .row-item.is-ok .icon {
+  color: var(--ok);
+}
+.exam-locked {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid transparent;
+  border-radius: var(--r-md);
+  background: var(--warn-bg);
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--text-body);
+}
+.exam-locked > .icon {
+  margin-top: 3px;
+  color: var(--warn);
+}
+.exam-locked-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+}
+.exam-locked strong {
+  font-weight: 500;
+  color: var(--text);
+}
+.exam-start {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
+/* última prova (base .result) */
+.exam-result-title {
+  font-size: var(--fs-lg);
+  line-height: 1.4;
+}
+.exam-result-note {
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--text-2);
+}
+
+/* tentativas */
+.exam-history .row-item {
+  flex-wrap: wrap;
+  row-gap: 4px;
+}
+.exam-hist-n {
+  flex: none;
+  width: 16px;
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-3);
+}
+.exam-hist-score {
+  flex: none;
+  font-family: var(--mono);
+  font-size: var(--fs-sm);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-2);
+}
+.exam-history .chip {
+  flex: none;
+}
+
+/* ---------- simulado de treino (itens com as classes cl- de exercises.css) */
+.practice {
+  gap: 14px;
+}
+.practice-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.practice-desc {
+  max-width: 70ch;
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--text-2);
+}
+.practice-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.practice-foot {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+.practice-score {
+  font-size: var(--fs-md);
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* ---------- prova em curso (ecrã inteiro) */
+.exam-shell {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: var(--bg);
+}
+.exam-bar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  padding: calc(10px + env(safe-area-inset-top, 0px)) max(var(--gutter), calc((100% - 760px) / 2)) 10px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+.exam-shell:has(.exam-doc) .exam-bar {
+  padding-left: max(var(--gutter), calc((100% - 1200px) / 2));
+  padding-right: max(var(--gutter), calc((100% - 1200px) / 2));
+}
+.exam-bar-title {
+  flex: 1 1 220px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.exam-name {
+  font-size: var(--fs-lg);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.exam-bar > .btn,
+.exam-bar > .confirm {
+  margin-left: auto;
+}
+.exam-clock {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 12px;
+  border: 1px solid var(--border-2);
+  border-radius: 99px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: var(--fs-md);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.exam-clock .icon {
+  color: var(--text-2);
+}
+.exam-clock.is-low {
+  border-color: transparent;
+  background: var(--bad-bg);
+  color: var(--bad);
+}
+.exam-clock.is-low .icon {
+  color: var(--bad);
+}
+.exam-count {
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+  white-space: nowrap;
+}
+.exam-count .mono {
+  color: var(--text);
+}
+@media (max-width: 519px) {
+  .exam-count-label {
+    display: none;
+  }
+}
+.exam-body {
+  max-width: calc(760px + 2 * var(--gutter));
+  margin: 0 auto;
+  padding: 24px var(--gutter) 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  min-width: 0;
+}
+.exam-note {
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--text-2);
+}
+.exam-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.exam-group-head {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.exam-group-title {
+  font-size: var(--fs-xl);
+  font-weight: 500;
+  line-height: 1.3;
+}
+.exam-group-note {
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--text-2);
+}
+.exam-q {
+  gap: 14px;
+  scroll-margin-top: 96px;
+}
+.exam-q-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.exam-q-text {
+  min-width: 0;
+  font-size: var(--fs-lg);
+  line-height: 1.6;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+.exam-q-num {
+  font-family: var(--mono);
+  font-size: var(--fs-sm);
+  color: var(--text-3);
+}
+.exam-q-pts {
+  flex: none;
+  padding-top: 3px;
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+  white-space: nowrap;
+}
+.exam-opts {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.exam-opt {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-sm);
+  background: var(--surface-2);
+  color: var(--text-body);
+  font-size: var(--fs-md);
+  line-height: 1.5;
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+.exam-opt:hover {
+  background: var(--surface-3);
+}
+.exam-opt.is-on {
+  border-color: var(--text);
+  background: var(--surface-3);
+  color: var(--text);
+}
+.exam-opt input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.exam-opt:has(input:focus-visible) {
+  outline: 2px solid var(--text-2);
+  outline-offset: 2px;
+}
+.exam-letter {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-xs);
+  background: var(--surface);
+  color: var(--text-2);
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+}
+.exam-opt.is-on .exam-letter {
+  border-color: var(--text);
+  background: var(--text);
+  color: var(--bg);
+}
+.exam-opt-text {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.exam-answer {
+  font-size: var(--fs-md);
+}
+.exam-end {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+.exam-end-count {
+  font-size: var(--fs-sm);
+  color: var(--text-3);
+}
+
+/* prova em modo documento: enunciado e respostas lado a lado no computador */
+.exam-body.exam-doc {
+  max-width: calc(1200px + 2 * var(--gutter));
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: 24px;
+}
+.exam-doc-answers {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  background: var(--surface);
+}
+@media (min-width: 980px) {
+  .exam-body.exam-doc {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  }
+  .exam-doc-answers {
+    position: sticky;
+    top: 80px;
+  }
+}
+
+/* ---------- correção */
+.grade {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.grade-summary-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 20px;
+}
+.grade-summary-text {
+  flex: 1 1 320px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.grade-summary-desc {
+  max-width: 70ch;
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--text-2);
+}
+.grade-summary-desc strong {
+  font-weight: 500;
+  color: var(--text);
+}
+.grade-total {
+  flex: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+  text-align: right;
+}
+.grade-total-label {
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.grade-total-score {
+  font-size: var(--fs-num);
+}
+.grade-summary .grading-ai {
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+.grade-ai-hint {
+  flex: 1 1 240px;
+  min-width: 0;
+  font-size: var(--fs-sm);
+  color: var(--text-3);
+}
+.grade-mcq {
+  gap: 10px;
+}
+.grade-mcq-count {
+  font-size: var(--fs-sm);
+  font-variant-numeric: tabular-nums;
+  color: var(--text-2);
+}
+.grade-mcq-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.grade-q {
+  gap: 14px;
+}
+.grade-q-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.grade-q-text {
+  min-width: 0;
+  font-size: var(--fs-lg);
+  line-height: 1.6;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+.grade-q-num {
+  font-family: var(--mono);
+  font-size: var(--fs-sm);
+  color: var(--text-3);
+}
+.grade-pts {
+  flex: none;
+  padding: 2px 8px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-xs);
+  background: var(--surface-2);
+  color: var(--text);
+  font-family: var(--mono);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+.grade-answer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-md);
+  background: var(--surface-2);
+}
+.grade-model {
+  border: 1px solid var(--border-2);
+  border-radius: var(--r-md);
+}
+.grade-model > summary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 36px;
+  padding: 6px 12px;
+  border-radius: var(--r-md);
+  color: var(--text-2);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  list-style: none;
+  cursor: pointer;
+}
+.grade-model > summary::-webkit-details-marker {
+  display: none;
+}
+.grade-model > summary:hover {
+  color: var(--text);
+}
+.grade-model > summary .icon {
+  color: var(--text-3);
+  transition: transform 0.15s ease;
+}
+.grade-model[open] > summary {
+  border-bottom: 1px solid var(--border-2);
+  border-radius: var(--r-md) var(--r-md) 0 0;
+}
+.grade-model[open] > summary .icon {
+  transform: rotate(90deg);
+}
+.grade-model > p {
+  padding: 10px 12px 12px;
+  font-size: var(--fs-sm);
+  line-height: 1.65;
+  color: var(--text-body);
+}
+.grade .criteria label {
+  min-width: 0;
+}
+
+/* ---------- gabarito */
+.gab-tab {
+  gap: 24px;
+}
+.gab-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0;
+}
+.gab-section-title {
+  font-size: var(--fs-xl);
+  font-weight: 500;
+  line-height: 1.3;
+  scroll-margin-top: calc(var(--mod-tabs-top, 0px) + var(--mod-tabs-h, 0px) + 12px);
+}
+.gab {
+  gap: 12px;
+  scroll-margin-top: calc(var(--mod-tabs-top, 0px) + var(--mod-tabs-h, 0px) + 12px);
+}
+.gab.is-locked {
+  border-style: dashed;
+  border-color: var(--border-2);
+  background: transparent;
+  color: var(--text-2);
+}
+.gab.is-locked .gab-title {
+  color: var(--text-2);
+}
+.gab > .btn,
+.gab > .confirm {
+  align-self: flex-start;
+}
+.gab > p .icon {
+  margin-right: 6px;
+  vertical-align: -3px;
+  color: var(--text-3);
+}
+.gab-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.gab-head > .icon {
+  margin-top: 2px;
+  color: var(--text-3);
+}
+.gab-head > .chip {
+  flex: none;
+}
+.gab-head-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.gab-title {
+  font-size: var(--fs-lg);
+  font-weight: 500;
+  line-height: 1.35;
+}
+.gab-locked-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+.gab-locked-row > .icon {
+  color: var(--text-3);
+}
+.gab-locked-text {
+  font-size: var(--fs-sm);
+  color: var(--text-2);
+}
+.gab-exam {
+  gap: 12px;
+}
+.gab-qs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.gab-q {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+}
+.gab-q:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+.gab-q:last-child {
+  padding-bottom: 0;
+}
+.gab-q-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+}
+.gab-q-head .chip {
+  flex: none;
+}
+.gab-q-text {
+  min-width: 0;
+  font-size: var(--fs-md);
+  line-height: 1.6;
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+.gab-q-num {
+  font-family: var(--mono);
+  font-size: var(--fs-sm);
+  color: var(--text-3);
+}
+.gab-answer {
+  min-width: 0;
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--text-body);
+  overflow-wrap: anywhere;
+}
+.gab-answer strong {
+  font-weight: 500;
+  color: var(--text);
+}
+.gab-explain {
+  color: var(--text-2);
+}
+.gab-crit-pts {
+  font-family: var(--mono);
+  font-size: var(--fs-xs);
+  color: var(--text-3);
+}
+.gab-review {
+  gap: 12px;
+}
+.gab-review-note {
+  max-width: 70ch;
+  font-size: var(--fs-sm);
+  line-height: 1.6;
+  color: var(--text-body);
+}
+.gab-review-qs {
+  white-space: nowrap;
+  color: var(--text-2);
+}
+
+/* ---------- blocos das perguntas: contexto (código, dados) sob o enunciado e solução longa da resposta-modelo */
+.exam-ctx,
+.exam-model-blocks {
+  gap: 10px;
+  font-size: var(--fs-md);
+  line-height: 1.65;
+}
+.grade-model > .exam-model-blocks {
+  padding: 0 12px 12px;
+}
+.gab-answer > .exam-model-blocks {
+  margin-top: 8px;
+}

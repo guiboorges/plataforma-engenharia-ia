@@ -1,0 +1,10 @@
+node_modules/
+dist/
+artifact/
+.DS_Store
+
+# Local / private
+.claude/
+CLAUDE.md
+course.config.json
+design/referencia-lunor.jpg
