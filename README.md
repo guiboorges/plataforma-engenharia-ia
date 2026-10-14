@@ -1,79 +1,75 @@
-# Engenharia de IA — plataforma de estudo
+# AI Engineering — a self-study platform
 
-**Uma plataforma que construí para estudar Engenharia de IA por conta própria, com a disciplina de um curso a sério.**
+**A platform I built to teach myself AI Engineering with the discipline of a proper course.**
 
-30 módulos em 7 fases, de outubro de 2026 a maio de 2028: da introdução à IA e Python até deep learning, LLMs e sistemas em produção.
+30 modules across 7 phases, from October 2026 to May 2028: from an introduction to AI and Python all the way to deep learning, LLMs and production systems.
 
-**[▶ Experimentar a demo](https://guiboorges.github.io/plataforma-engenharia-ia/)** · o progresso fica guardado no seu browser
+**[▶ Try the demo](https://guiboorges.github.io/plataforma-engenharia-ia/)** · your progress is saved in your browser
 
-![Ecrã "Hoje": progresso, horas de estudo e próxima sessão](docs/screenshots/hoje.png)
+The interface and all course material are in Portuguese, since this is my own personal course.
 
-## Porque existe
+![The "Today" screen: progress, study hours and the next session](docs/screenshots/hoje.png)
 
-Aprender sozinho é fácil de começar e difícil de manter. Os cursos online dão vídeos e exercícios soltos, mas não dão um plano, prazos, provas a sério nem forma de saber se está mesmo a aprender.
+## Why it exists
 
-Esta plataforma junta tudo isso num só lugar:
+Self-study is easy to start and hard to sustain. Online courses give you videos and loose exercises, but no plan, no deadlines, no real exams and no way to tell whether you're actually learning.
 
-- **Um plano com datas.** Cada módulo tem semanas marcadas no calendário (com pausas de Natal e de verão) e uma meta de 3 horas por semana. O ecrã *Hoje* diz qual é a próxima sessão e se estou em dia.
-- **Avaliação que não deixa fazer batota.** O gabarito de cada exercício só abre depois de entregar uma tentativa. A prova é cronometrada e sem consulta: durante a prova não se vê mais nada. Aprovação com 14 em 20; abaixo disso, só se repete uma semana depois.
-- **Aprender fazendo.** Os diagramas das aulas viram widgets interativos: correr o k-means passo a passo, mexer no PCA, ver um gráfico SHAP a construir-se.
-- **Não esquecer.** Cartões de revisão espaçada aparecem à medida que se lê a aula.
+This platform brings all of that together in one place:
 
-## O que tem
+- **A dated plan.** Every module has its weeks set on the calendar (with Christmas and summer breaks) and a target of 3 hours per week. The *Today* screen shows the next session and whether I'm on track.
+- **Assessment you can't cheat on.** Each exercise's answer key only unlocks after you submit an attempt. Exams are timed and closed-book: nothing else is visible while an exam is running. The pass mark is 14 out of 20; below that, a retake only opens a week later.
+- **Learning by doing.** Lesson diagrams become interactive widgets: run k-means step by step, play with PCA, watch a SHAP plot build itself.
+- **Not forgetting.** Spaced-repetition flashcards appear as you read through each lesson.
 
-| Área | O que faz |
+## What's inside
+
+| Area | What it does |
 |---|---|
-| **Hoje** | Próxima sessão de estudo, horas da semana, cartões para rever, estado face ao plano |
-| **Módulos** | Plano, Aula, Apostila, Exercícios, Prova, Gabarito e Notas |
-| **Widgets** | Grelha de Russell & Norvig, linha do tempo da IA, laboratório de spam (Naive Bayes igual ao scikit-learn), slicing e aliasing em Python, broadcasting e group-by, transformações lineares e SVD, k-means, DBSCAN, PCA, validação cruzada, limiares de decisão, SHAP |
-| **Exercícios** | Corrigem-se sozinhos quando podem; os escritos corrigem-se com os critérios do gabarito |
-| **Provas** | Cronómetro, sem consulta, escolha múltipla corrigida automaticamente |
-| **Percurso e Calendário** | As 7 fases, os 30 módulos e o plano semana a semana |
-| **Projetos e Certificações** | Grelhas dos mini-projetos, do projeto final e das certificações a fazer |
-| **Tutor** | Explica a aula e os erros com o Claude, sem dar respostas a exercícios por fazer (só na versão Artifact do claude.ai) |
+| **Today** | Next study session, hours this week, cards due for review, status against the plan |
+| **Modules** | Plan, Lesson, Handbook, Exercises, Exam, Answer key and Notes |
+| **Widgets** | Russell & Norvig grid, AI timeline, spam lab (Naive Bayes matching scikit-learn), slicing and aliasing in Python, broadcasting and group-by, linear transformations and SVD, k-means, DBSCAN, PCA, cross-validation, decision thresholds, SHAP |
+| **Exercises** | Auto-graded where possible; written answers are graded against the answer key's criteria |
+| **Exams** | Timer, closed-book, auto-graded multiple choice |
+| **Path and Calendar** | The 7 phases, the 30 modules and the week-by-week plan |
+| **Projects and Certifications** | Rubrics for the mini-projects, the capstone project and the certifications to take |
+| **Tutor** | Explains the lesson and your mistakes using Claude, without giving away answers to unfinished exercises (only in the claude.ai Artifact version) |
 
 <table>
   <tr>
-    <td width="60%"><img src="docs/screenshots/aula.png" alt="Aula do módulo 10, aprendizagem não supervisionada"></td>
-    <td width="40%"><img src="docs/screenshots/widget-kmeans.png" alt="Widget interativo de k-means"></td>
+    <td width="60%"><img src="docs/screenshots/aula.png" alt="Module 10 lesson: unsupervised learning"></td>
+    <td width="40%"><img src="docs/screenshots/widget-kmeans.png" alt="Interactive k-means widget"></td>
   </tr>
   <tr>
-    <td align="center"><sub>Aula com secções, código testado e fontes citadas</sub></td>
-    <td align="center"><sub>Widget de k-means: escolher k, o início e avançar passo a passo</sub></td>
+    <td align="center"><sub>A lesson with sections, tested code and cited sources</sub></td>
+    <td align="center"><sub>k-means widget: pick k and the starting points, then step through</sub></td>
   </tr>
 </table>
 
-![Percurso: as 7 fases e os módulos de cada uma](docs/screenshots/percurso.png)
+![Path: the 7 phases and the modules in each one](docs/screenshots/percurso.png)
 
-## Como foi feito
+## How it was built
 
-- **Código:** React 18 + TypeScript + Vite, sem bibliotecas de UI. O sistema visual está em [`design/DESIGN.md`](design/DESIGN.md).
-- **Conteúdo:** o material do curso (aulas, apostilas, exercícios, provas e gabaritos) foi criado por mim com o Claude. Os resultados de código são verificados em Python com scikit-learn antes de entrarem nas aulas.
-- **Onde corre:** como Artifact no claude.ai (com tutor e progresso na conta) ou como site estático (progresso no `localStorage`).
+- **Code:** React 18 + TypeScript + Vite, with no UI libraries. The visual system is documented in [`design/DESIGN.md`](design/DESIGN.md).
+- **Content:** I created the course material (lessons, handbooks, exercises, exams and answer keys) with Claude. Code outputs are verified in Python with scikit-learn before they go into the lessons.
+- **Where it runs:** as an Artifact on claude.ai (with the tutor and progress saved to your account) or as a static site (progress stored in `localStorage`).
 
-## Correr localmente
+## Running locally
 
 ```bash
 npm install
 npm run dev          # http://localhost:5173
-npm run build:pages  # site estático em dist/ (o mesmo da demo)
+npm run build:pages  # static site in dist/ (same as the demo)
 ```
 
-Nas Definições pode mudar a data de início e a meta semanal, e guardar ou importar uma cópia de segurança do progresso.
+In Settings you can change the start date and the weekly target, and export or import a backup of your progress.
 
-## Estrutura
+## Structure
 
 ```
 src/
-  content/      plano do curso, módulos interativos (m1.ts … m11.ts) e fechos de fase
-  components/   ecrãs, exercícios, provas e os widgets de cada módulo
-  lib/          progresso, calendário, provas, revisão espaçada, Naive Bayes, tutor
-  styles/       tokens (tema escuro e claro) e estilos por área
-scripts/        sincronização do material do curso e builds (Artifact e GitHub Pages)
+  content/      course plan, interactive modules (m1.ts … m11.ts) and phase wrap-ups
+  components/   screens, exercises, exams and each module's widgets
+  lib/          progress, calendar, exams, spaced repetition, Naive Bayes, tutor
+  styles/       tokens (dark and light themes) and per-area styles
+scripts/        course material sync and builds (Artifact and GitHub Pages)
 ```
-
----
-
-### In English
-
-A self-study platform I built to learn AI Engineering on my own: 30 modules across 7 phases (Oct 2026 – May 2028), with a dated study plan, interactive lesson widgets (k-means, PCA, SHAP, Naive Bayes…), auto-graded exercises, timed closed-book exams, spaced-repetition flashcards and a Claude-powered tutor. Built with React, TypeScript and Vite; course material written with Claude. **[Try the demo](https://guiboorges.github.io/plataforma-engenharia-ia/)** (Portuguese).
