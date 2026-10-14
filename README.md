@@ -1,5 +1,7 @@
 # AI Engineering — a self-study platform
 
+[![Deploy](https://github.com/guiboorges/plataforma-engenharia-ia/actions/workflows/pages.yml/badge.svg)](https://github.com/guiboorges/plataforma-engenharia-ia/actions/workflows/pages.yml) [![Release](https://img.shields.io/github/v/release/guiboorges/plataforma-engenharia-ia)](https://github.com/guiboorges/plataforma-engenharia-ia/releases/latest) [![License: MIT](https://img.shields.io/github/license/guiboorges/plataforma-engenharia-ia)](LICENSE)
+
 **A platform I built to teach myself AI Engineering with the discipline of a proper course.**
 
 30 modules across 7 phases, from October 2026 to May 2028: from an introduction to AI and Python all the way to deep learning, LLMs and production systems.
