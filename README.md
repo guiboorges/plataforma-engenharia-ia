@@ -73,3 +73,7 @@ src/
   styles/       tokens (dark and light themes) and per-area styles
 scripts/        course material sync and builds (Artifact and GitHub Pages)
 ```
+
+## License
+
+[MIT](LICENSE) © 2026 Guilherme Borges
